@@ -11,10 +11,6 @@ Installation
 use Gradle:
 
 ```gradle
-repositories {
-  mavenCentral()
-}
-
 dependencies {
   //todo
 }
