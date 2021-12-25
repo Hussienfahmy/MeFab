@@ -5,7 +5,8 @@ package com.hfahmy.mefab
  * represent square areas on the screen
  * @constructor Create empty constructor for position
  */
-enum class Position {
+@MeFabRestricted
+public enum class Position {
     TOP_LEFT,
     TOP_CENTER,
     TOP_RIGHT,

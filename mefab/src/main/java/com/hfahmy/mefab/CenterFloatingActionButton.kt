@@ -16,7 +16,8 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class CenterFloatingActionButton @JvmOverloads constructor(
+@OptIn(MeFabRestricted::class)
+internal class CenterFloatingActionButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,

@@ -5,7 +5,7 @@ package com.hfahmy.mefab
  *  to make them fit nicely in the screen
  */
 
-
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInTopLeft(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.BOTTOM_RIGHT)
@@ -15,6 +15,7 @@ internal fun suitablePositionsForChildrenInTopLeft(fabSize: Int): List<Position>
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInTopCenter(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.BOTTOM_CENTER)
@@ -24,6 +25,7 @@ internal fun suitablePositionsForChildrenInTopCenter(fabSize: Int): List<Positio
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInTopRight(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.BOTTOM_LEFT)
@@ -33,6 +35,7 @@ internal fun suitablePositionsForChildrenInTopRight(fabSize: Int): List<Position
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInCenterLeft(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.CENTER_RIGHT)
@@ -42,6 +45,7 @@ internal fun suitablePositionsForChildrenInCenterLeft(fabSize: Int): List<Positi
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInCenter(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.TOP_CENTER)
@@ -51,6 +55,7 @@ internal fun suitablePositionsForChildrenInCenter(fabSize: Int): List<Position> 
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInCenterRight(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.CENTER_LEFT)
@@ -60,6 +65,7 @@ internal fun suitablePositionsForChildrenInCenterRight(fabSize: Int): List<Posit
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInBottomLeft(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.TOP_RIGHT)
@@ -69,6 +75,7 @@ internal fun suitablePositionsForChildrenInBottomLeft(fabSize: Int): List<Positi
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInBottomCenter(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.TOP_CENTER)
@@ -78,6 +85,7 @@ internal fun suitablePositionsForChildrenInBottomCenter(fabSize: Int): List<Posi
     }
 }
 
+@OptIn(MeFabRestricted::class)
 internal fun suitablePositionsForChildrenInBottomRight(fabSize: Int): List<Position> {
     return when (fabSize) {
         1 -> listOf(Position.TOP_LEFT)

@@ -7,4 +7,5 @@ package com.hfahmy.mefab
  * @property y
  * @constructor Create [Point]
  */
-data class Point(val x: Float, val y: Float)
+@MeFabRestricted
+public data class Point(val x: Float, val y: Float)

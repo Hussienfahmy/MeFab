@@ -19,7 +19,7 @@ import android.util.DisplayMetrics
  * @property y2ToBorderRange
  * @constructor Create [Separators]
  */
-data class Separators constructor(
+internal data class Separators constructor(
     val borderToX1Rang: IntRange,
     val x1ToX2Range: IntRange,
     val x2ToBorderRange: IntRange,
@@ -28,7 +28,7 @@ data class Separators constructor(
     val y2ToBorderRange: IntRange,
 )
 
-fun DisplayMetrics.getSeparators(): Separators {
+internal fun DisplayMetrics.getSeparators(): Separators {
     val y1 = heightPixels / 3
     val y2 = y1 * 2
     val x1 = widthPixels / 3

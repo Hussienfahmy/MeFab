@@ -12,14 +12,15 @@ import androidx.core.view.size
 import androidx.core.view.updateLayoutParams
 import kotlin.properties.Delegates
 
-class MovableFloatingExpandedActionButton @JvmOverloads constructor(
+@OptIn(MeFabRestricted::class)
+public class MovableFloatingExpandedActionButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
 ) : MotionLayout(context, attrs, defStyleAttr), Communicator {
 
     // listener to pass the clicks from edge fabs to user
-    private var edgeFabChildClickListener: EdgeFloatingActionButton.OnClickListener? = null
+    private var edgeFabChildClickListener: OnEdgeFabClickListener? = null
 
     // ids of the edge fabs, getting it from the supplied menu, i need it to make constraints
     private lateinit var edgeFabIds: List<Int>
@@ -34,7 +35,7 @@ class MovableFloatingExpandedActionButton @JvmOverloads constructor(
     // contains the current positions of the edge fabs
     private val edgePositions = mutableListOf<Position>()
 
-    fun setOnEdgeClickListener(onEdgeFabClickListener: EdgeFloatingActionButton.OnClickListener) {
+    public fun setOnEdgeFabClickListener(onEdgeFabClickListener: OnEdgeFabClickListener) {
         this.edgeFabChildClickListener = onEdgeFabClickListener
     }
 

@@ -2,10 +2,10 @@ package com.hfahmy.mefab
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.animation.AnticipateOvershootInterpolator
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class EdgeFloatingActionButton @JvmOverloads constructor(
+@OptIn(MeFabRestricted::class)
+internal class EdgeFloatingActionButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
@@ -25,8 +25,8 @@ class EdgeFloatingActionButton @JvmOverloads constructor(
         communicator.onEdgeFabClick(id)
         return true
     }
+}
 
-    class OnClickListener(private val listener: (fabId: Int) -> Unit) {
-        fun onClick(fabId: Int) = listener(fabId)
-    }
+public class OnEdgeFabClickListener(private val listener: (fabId: Int) -> Unit) {
+    public fun onClick(fabId: Int): Unit = listener(fabId)
 }

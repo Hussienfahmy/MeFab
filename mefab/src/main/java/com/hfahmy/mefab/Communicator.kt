@@ -5,7 +5,8 @@ package com.hfahmy.mefab
  * interface to communicate and send events between the [MovableFloatingExpandedActionButton]
  * and [CenterFloatingActionButton] and [EdgeFloatingActionButton]
  */
-interface Communicator {
+@MeFabRestricted
+internal interface Communicator {
 
     /**
      * provide the [MovableFloatingExpandedActionButton] new Position when it moves

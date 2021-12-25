@@ -7,7 +7,7 @@ import androidx.constraintlayout.widget.ConstraintSet
  * clear all constraints and set the view to WRAP_CONTENT, WRAP_CONTENT
  * @param viewId View id
  */
-fun ConstraintSet.clearConstraints(viewId: Int) {
+internal fun ConstraintSet.clearConstraints(viewId: Int) {
     clear(viewId)
     constrainWidth(viewId, ConstraintSet.WRAP_CONTENT)
     constrainHeight(viewId, ConstraintSet.WRAP_CONTENT)
@@ -20,7 +20,7 @@ fun ConstraintSet.clearConstraints(viewId: Int) {
  * @param viewId View id to default it
  * @param parentId Parent id of the [viewId]
  */
-fun ConstraintSet.setConstraintsDefault(viewId: Int, parentId: Int) {
+internal fun ConstraintSet.setConstraintsDefault(viewId: Int, parentId: Int) {
     clearConstraints(viewId)
     constraintCenter(viewId, parentId)
     setScaleX(viewId, 0.5f)
@@ -35,11 +35,12 @@ fun ConstraintSet.setConstraintsDefault(viewId: Int, parentId: Int) {
  * @param parentId Parent id
  * @param position Position
  */
-fun ConstraintSet.setNewConstraints(viewId: Int, parentId: Int, position: Position) {
+@OptIn(MeFabRestricted::class)
+internal fun ConstraintSet.setNewConstraints(viewId: Int, parentId: Int, position: Position) {
     setScaleX(viewId, 1f)
     setScaleY(viewId, 1f)
 
-    when(position) {
+    when (position) {
         Position.TOP_LEFT -> constraintTopLeft(viewId, parentId)
         Position.TOP_CENTER -> constraintTopCenter(viewId, parentId)
         Position.TOP_RIGHT -> constraintTopRight(viewId, parentId)

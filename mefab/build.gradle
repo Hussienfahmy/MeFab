@@ -7,7 +7,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        minSdk 23
+        minSdk 21
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -28,6 +28,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        freeCompilerArgs += [
+                '-Xexplicit-api=warning',
+                '-Xopt-in=kotlin.RequiresOptIn',
+        ]
     }
 }
 
