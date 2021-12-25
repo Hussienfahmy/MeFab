@@ -8,7 +8,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
 import android.view.ViewGroup
-import android.widget.RelativeLayout
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.math.abs
@@ -32,18 +33,17 @@ class CenterFloatingActionButton @JvmOverloads constructor(
     private val communicator
         get() = parent as Communicator
 
-    private val relativeLayout
-        get() = this.parent as RelativeLayout
+    private val motionLayout
+        get() = this.parent as MotionLayout
 
     init {
+        id = R.id.center_fab
         isClickable = true
         compatElevation = 9f
-        layoutParams = RelativeLayout.LayoutParams(
-            RelativeLayout.LayoutParams.WRAP_CONTENT,
-            RelativeLayout.LayoutParams.WRAP_CONTENT
-        ).apply {
-            addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE)
-        }
+        layoutParams = ConstraintLayout.LayoutParams(
+            ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ConstraintLayout.LayoutParams.WRAP_CONTENT
+        )
 
         // set animated drawable
         setImageDrawable(
@@ -79,8 +79,8 @@ class CenterFloatingActionButton @JvmOverloads constructor(
     }
 
     private fun onTouchMove(motionEvent: MotionEvent) {
-        val parentLayoutParams = relativeLayout.layoutParams as ViewGroup.MarginLayoutParams
-        val screenView = relativeLayout.parent as View
+        val parentLayoutParams = motionLayout.layoutParams as ViewGroup.MarginLayoutParams
+        val screenView = motionLayout.parent as View
         val screenWidth = screenView.width
         val screenHeight = screenView.height
         var newX = motionEvent.rawX + dX
@@ -89,7 +89,7 @@ class CenterFloatingActionButton @JvmOverloads constructor(
             newX
         ) // Prevent the FAB pass the left hand side of the parent
         newX = min(
-            (screenWidth - (relativeLayout.width / 2 + width / 2) - parentLayoutParams.rightMargin).toFloat(),
+            (screenWidth - (motionLayout.width / 2 + width / 2) - parentLayoutParams.rightMargin).toFloat(),
             newX
         ) // Prevent the FAB pass the right hand side of the parent
         var newY = motionEvent.rawY + dY
@@ -98,18 +98,18 @@ class CenterFloatingActionButton @JvmOverloads constructor(
             newY
         ) // Prevent the FAB pass the top of the parent
         newY = min(
-            (screenHeight - (relativeLayout.height / 2 + height / 2) - parentLayoutParams.bottomMargin).toFloat(),
+            (screenHeight - (motionLayout.height / 2 + height / 2) - parentLayoutParams.bottomMargin).toFloat(),
             newY
         ) // Prevent the FAB pass the bottom of the parent
         communicator.onContainerMove(Point(newX, newY))
-        communicator.onCenterFabChange(getCenterFabPositionOnScreen(), state)
+        communicator.onCenterFabPositionChange(getCenterFabPositionOnScreen())
     }
 
     private fun onTouchStart(motionEvent: MotionEvent) {
         downRawX = motionEvent.rawX
         downRawY = motionEvent.rawY
-        dX = relativeLayout.x - downRawX
-        dY = relativeLayout.y - downRawY
+        dX = motionLayout.x - downRawX
+        dY = motionLayout.y - downRawY
     }
 
     override fun performClick(): Boolean {
@@ -124,7 +124,7 @@ class CenterFloatingActionButton @JvmOverloads constructor(
             State.EXPANDED -> animateIconToCloseIcon()
             State.CLOSED -> animateIconToMenuIcon()
         }
-        communicator.onCenterFabChange(getCenterFabPositionOnScreen(), state)
+        communicator.onCenterFabPositionChange(getCenterFabPositionOnScreen())
     }
 
     private fun animateIconToMenuIcon() {
@@ -141,8 +141,8 @@ class CenterFloatingActionButton @JvmOverloads constructor(
 
     private fun getCenterFabPositionOnScreen(): Position {
         // as the fab occur in the middle of the parent
-        val x = (relativeLayout.x + relativeLayout.width / 2).toInt()
-        val y = (relativeLayout.y + relativeLayout.height / 2).toInt()
+        val x = (motionLayout.x + motionLayout.width / 2).toInt()
+        val y = (motionLayout.y + motionLayout.height / 2).toInt()
 
         return when {
             y in separators.borderToY1Rang && x in separators.borderToX1Rang -> Position.TOP_LEFT

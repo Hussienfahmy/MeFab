@@ -8,13 +8,11 @@ package com.hfahmy.mefab
 interface Communicator {
 
     /**
-     * On center fab change.
-     * provide the [MovableFloatingExpandedActionButton] with new states and the position of [CenterFloatingActionButton]
+     * provide the [MovableFloatingExpandedActionButton] new Position when it moves
      * on the screen
      * @param newPosition New position of the center fab
-     * @param state State of the center fab
      */
-    fun onCenterFabChange(newPosition: Position, state: State)
+    fun onCenterFabPositionChange(newPosition: Position)
 
     /**
      * On container move.

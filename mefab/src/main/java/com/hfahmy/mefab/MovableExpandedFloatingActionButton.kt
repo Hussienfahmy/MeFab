@@ -1,108 +1,149 @@
 package com.hfahmy.mefab
 
 import android.content.Context
+import android.transition.TransitionManager
 import android.util.AttributeSet
 import android.widget.PopupMenu
-import android.widget.RelativeLayout
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.content.withStyledAttributes
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.iterator
 import androidx.core.view.size
+import androidx.core.view.updateLayoutParams
+import kotlin.properties.Delegates
 
 class MovableFloatingExpandedActionButton @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-) : RelativeLayout(context, attrs, defStyleAttr), Communicator {
+) : MotionLayout(context, attrs, defStyleAttr), Communicator {
 
+    // listener to pass the clicks from edge fabs to user
     private var edgeFabChildClickListener: EdgeFloatingActionButton.OnClickListener? = null
 
-    private lateinit var edgeFabList: MutableList<EdgeFloatingActionButton>
+    // ids of the edge fabs, getting it from the supplied menu, i need it to make constraints
+    private lateinit var edgeFabIds: List<Int>
 
-    private var closeAfterEdgeFabClick = false
+    // supplied by the user, if true change the state of close after the edge fab clicked
+    private var closeAfterEdgeFabClick by Delegates.notNull<Boolean>()
 
+    // the Center Fab !!
     private val centerFab: CenterFloatingActionButton =
         CenterFloatingActionButton(context, attrs, defStyleAttr)
 
+    // contains the current positions of the edge fabs
     private val edgePositions = mutableListOf<Position>()
-
-    private lateinit var coordinatesGenerator: CoordinatesGenerator
 
     fun setOnEdgeClickListener(onEdgeFabClickListener: EdgeFloatingActionButton.OnClickListener) {
         this.edgeFabChildClickListener = onEdgeFabClickListener
     }
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
-        coordinatesGenerator = CoordinatesGenerator(w, h)
-    }
-
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val size = MeasureSpec.makeMeasureSpec(resources.getDimension(R.dimen.container_size).toInt(), MeasureSpec.EXACTLY)
+        // specify a fixed width and height
+        val size = MeasureSpec.makeMeasureSpec(
+            resources.getDimension(R.dimen.container_size).toInt(),
+            MeasureSpec.EXACTLY
+        )
         super.onMeasure(size, size)
         setMeasuredDimension(size, size)
     }
 
     init {
+        //add center fab
         addView(centerFab)
+        // add it's constraint to make it in the center
+        centerFab.updateLayoutParams<LayoutParams> {
+            startToStart = id
+            endToEnd = id
+            topToTop = id
+            bottomToBottom = id
+        }
 
+        // get user values from xml attributes
         context.withStyledAttributes(attrs, R.styleable.MovableFloatingExpandedActionButton) {
             closeAfterEdgeFabClick =
-                this.getBoolean(R.styleable.MovableFloatingExpandedActionButton_closeAfterEdgeFabClick,
-                    false)
+                this.getBoolean(
+                    R.styleable.MovableFloatingExpandedActionButton_closeAfterEdgeFabClick,
+                    false
+                )
             val menuId = this.getResourceId(R.styleable.MovableFloatingExpandedActionButton_menu, 0)
             generateEdgeFabs(menuId, attrs, defStyleAttr)
         }
+
+        // i need run this after drawing to make take effect !
+        doOnPreDraw {
+            // load the transition from xml
+            loadLayoutDescription(R.xml.scene)
+            // set the constraints of the edge fabs to make them in the center
+            initConstraintStart()
+        }
     }
 
+    /**
+     * Generate edge fabs.
+     * Generate and add teh edge fabs
+     */
     private fun generateEdgeFabs(menuId: Int, attrs: AttributeSet?, defStyleAttr: Int) {
+        // inflating given menu to access the id and icons
         val popupMenu = PopupMenu(context, null)
         popupMenu.inflate(menuId)
-        edgeFabList = mutableListOf()
+        // check the size of menu
         val size = popupMenu.menu.size
-        if (size > 3) throwMaxItemsException(size)
-        popupMenu.menu.iterator().forEach { menuItem ->
-            val edgeFab = EdgeFloatingActionButton(context, attrs, defStyleAttr).apply {
-                setImageDrawable(menuItem.icon)
-                id = menuItem.itemId
+        if (size > 3) throwNumberOfItemsItemsException(size)
+        // ids of the fabs
+        val ids = mutableListOf<Int>()
+        popupMenu.menu.iterator()
+            .forEach { menuItem ->
+                val edgeFab = EdgeFloatingActionButton(context, attrs, defStyleAttr).apply {
+                    setImageDrawable(menuItem.icon)
+                    id = menuItem.itemId
+                    ids.add(menuItem.itemId)
+                }
+                addView(edgeFab)
             }
-            edgeFabList.add(edgeFab)
-            addView(edgeFab)
+        edgeFabIds = ids
+    }
+
+    private fun initConstraintStart() {
+        getConstraintSet(R.id.start)?.let { constraintSet ->
+            edgeFabIds.forEach {
+                constraintSet.setConstraintsDefault(it, this.id)
+                constraintSet.applyTo(this)
+            }
         }
     }
 
-    override fun onCenterFabChange(newPosition: Position, state: State) {
-        if (state == State.CLOSED) {
-            // clear so i can check equality when it expand again
-            edgePositions.clear()
-            val edgePositions = mutableListOf<Position>().apply {
-                repeat(edgeFabList.size) { add(Position.CENTER) }
-            }
-            animateEdgeFabs(edgePositions)
-            return
-        }
+    override fun onCenterFabPositionChange(newPosition: Position) {
         val newEdgePositions = when (newPosition) {
-            Position.TOP_LEFT -> suitablePositionsForChildrenInTopLeft(edgeFabList.size)
-            Position.TOP_CENTER -> suitablePositionsForChildrenInTopCenter(edgeFabList.size)
-            Position.TOP_RIGHT -> suitablePositionsForChildrenInTopRight(edgeFabList.size)
-            Position.CENTER_LEFT -> suitablePositionsForChildrenInCenterLeft(edgeFabList.size)
-            Position.CENTER -> suitablePositionsForChildrenInCenter(edgeFabList.size)
-            Position.CENTER_RIGHT -> suitablePositionsForChildrenInCenterRight(edgeFabList.size)
-            Position.BOTTOM_RIGHT -> suitablePositionsForChildrenInBottomRight(edgeFabList.size)
-            Position.BOTTOM_CENTER -> suitablePositionsForChildrenInBottomCenter(edgeFabList.size)
-            Position.BOTTOM_LEFT -> suitablePositionsForChildrenInBottomLeft(edgeFabList.size)
+            Position.TOP_LEFT -> suitablePositionsForChildrenInTopLeft(edgeFabIds.size)
+            Position.TOP_CENTER -> suitablePositionsForChildrenInTopCenter(edgeFabIds.size)
+            Position.TOP_RIGHT -> suitablePositionsForChildrenInTopRight(edgeFabIds.size)
+            Position.CENTER_LEFT -> suitablePositionsForChildrenInCenterLeft(edgeFabIds.size)
+            Position.CENTER -> suitablePositionsForChildrenInCenter(edgeFabIds.size)
+            Position.CENTER_RIGHT -> suitablePositionsForChildrenInCenterRight(edgeFabIds.size)
+            Position.BOTTOM_RIGHT -> suitablePositionsForChildrenInBottomRight(edgeFabIds.size)
+            Position.BOTTOM_CENTER -> suitablePositionsForChildrenInBottomCenter(edgeFabIds.size)
+            Position.BOTTOM_LEFT -> suitablePositionsForChildrenInBottomLeft(edgeFabIds.size)
         }
 
         // prevent animate to the same positions
+        // as it cause visual glitches and will cause performance load
         if (!edgePositions.containsAll(newEdgePositions)) {
             edgePositions.clear()
             edgePositions.addAll(newEdgePositions)
-            animateEdgeFabs(edgePositions)
+            changeConstraintsOfEdgeFabs(edgePositions)
         }
     }
 
-    private fun animateEdgeFabs(edgePositions: MutableList<Position>) {
-        edgeFabList.zip(edgePositions).forEach { (edgeFab, position) ->
-            edgeFab.animateTo(coordinatesGenerator.getCoordinates(position, edgeFab))
+    private fun changeConstraintsOfEdgeFabs(edgePositions: MutableList<Position>) {
+        getConstraintSet(R.id.end)?.let {
+            edgeFabIds.zip(edgePositions).forEach { (edgeFabId, position) ->
+                it.clearConstraints(edgeFabId)
+                it.setNewConstraints(edgeFabId, id, position)
+                // animate the transition to the new positions if the state is opened
+                TransitionManager.beginDelayedTransition(this)
+                it.applyTo(this)
+            }
         }
     }
 
@@ -117,8 +158,10 @@ class MovableFloatingExpandedActionButton @JvmOverloads constructor(
     override fun onEdgeFabClick(fabId: Int) {
         if (closeAfterEdgeFabClick) {
             centerFab.inverseState()
+            this.transitionToStart()
         }
 
+        // trigger the user click listener
         edgeFabChildClickListener?.onClick(fabId)
     }
 }
