@@ -9,6 +9,8 @@ of [MotionLayout](https://developer.android.com/training/constraint-layout/motio
 change the fab positions while moving it around the screen giving you a beautiful design and user
 friendly experience for user and developer
 
+![overview](images/overview.gif)
+
 Installation
 --------
 use Gradle:
