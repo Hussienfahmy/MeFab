@@ -1,4 +1,4 @@
-![](https://badgen.net/maven/v/maven-central/io.github.hussienfahmy/mefab)
+[![](https://badgen.net/maven/v/maven-central/io.github.hussienfahmy/mefab)](https://TODO)
 
 MeFab
 =====
@@ -9,7 +9,7 @@ Floating Action Button but MOVABLE and EXPANDABLE
 Based on the power
 of [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) MeFab can
 change the fab positions while moving it around the screen giving you a beautiful design and user
-friendly experience for user and developer
+friendly experience for user and developer as you can start using it in 3 steps
 
 ![overview](images/overview.gif)
 
@@ -33,12 +33,13 @@ todo
 
 Compatibility
 -------------
- **Minimum Android SDK**: API level of 21.
- **Maximum menu items (Edge fab) is 3
+ - Minimum Android SDK API level is 21.
+ 
+ - Maximum menu items (Edge fab) is 3.
 
- How to use
+ How to use (3 steps)
 -------------
-Create a menu Describe the icon and id for each edge fab (MeFab currently support maximum 3 items)
+1. Create a menu Describe the icon and id for each edge fab (MeFab currently support maximum 3 items)
 
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
@@ -59,7 +60,7 @@ Create a menu Describe the icon and id for each edge fab (MeFab currently suppor
 </menu>
 ```
 
- In the view XML you want to place MeFab
+2. In the view XML you want to place MeFab
 
 ```xml
     <com.hfahmy.mefab.MovableFloatingExpandedActionButton
@@ -73,7 +74,7 @@ Create a menu Describe the icon and id for each edge fab (MeFab currently suppor
 <!--    app:menu: the menu describing the edge fabs-->
 ```
 
-Finally add click listener to receive the id as a callback when the edge fab clicked
+3. Finally add click listener to receive the id as a callback when the edge fab clicked
 
 ```kotlin
         binding.meFab.setOnEdgeFabClickListener(OnEdgeFabClickListener { id ->
@@ -93,7 +94,7 @@ Using By
 --------
 [GPA Manager](https://play.google.com/store/apps/details?id=com.hussienFahmy.myGpaManager)
 
-Feel free to mak a pull request and your link here
+Feel free to make a pull request and your app here
 
 Contribution
 --------
