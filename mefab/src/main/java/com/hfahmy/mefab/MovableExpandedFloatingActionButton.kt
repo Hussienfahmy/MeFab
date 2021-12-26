@@ -99,6 +99,15 @@ public class MovableFloatingExpandedActionButton @JvmOverloads constructor(
                     setImageDrawable(menuItem.icon)
                     id = menuItem.itemId
                     ids.add(menuItem.itemId)
+                    layoutParams = LayoutParams(
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        startToStart = this@MovableFloatingExpandedActionButton.id
+                        endToEnd = this@MovableFloatingExpandedActionButton.id
+                        topToTop = this@MovableFloatingExpandedActionButton.id
+                        bottomToBottom = this@MovableFloatingExpandedActionButton.id
+                    }
                 }
                 addView(edgeFab)
             }
