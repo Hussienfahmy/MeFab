@@ -1,4 +1,4 @@
-package com.hfahmy.mefab
+package com.hfahmy.mefab.utils
 
 import android.util.DisplayMetrics
 
@@ -17,7 +17,6 @@ import android.util.DisplayMetrics
  * @property borderToY1Rang
  * @property y1ToY2Range
  * @property y2ToBorderRange
- * @constructor Create [Separators]
  */
 internal data class Separators constructor(
     val borderToX1Rang: IntRange,

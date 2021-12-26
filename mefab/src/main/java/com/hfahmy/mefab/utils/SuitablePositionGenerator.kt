@@ -1,7 +1,10 @@
-package com.hfahmy.mefab
+package com.hfahmy.mefab.utils
+
+import com.hfahmy.mefab.MeFabRestricted
+import com.hfahmy.mefab.enums.Position
 
 /**
- * File supplies the suitable positions for the [EdgeFloatingActionButton] based on the size of menu
+ * File supplies the suitable positions for the [com.hfahmy.mefab.fabs.EdgeFloatingActionButton] based on the size of menu
  *  to make them fit nicely in the screen
  */
 

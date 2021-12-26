@@ -1,4 +1,4 @@
-package com.hfahmy.mefab
+package com.hfahmy.mefab.fabs
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,6 +12,13 @@ import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hfahmy.mefab.MeFabRestricted
+import com.hfahmy.mefab.R
+import com.hfahmy.mefab.enums.Position
+import com.hfahmy.mefab.enums.State
+import com.hfahmy.mefab.interfaces.Communicator
+import com.hfahmy.mefab.models.Point
+import com.hfahmy.mefab.utils.getSeparators
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min

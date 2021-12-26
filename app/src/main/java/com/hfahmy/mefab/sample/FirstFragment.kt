@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.hfahmy.mefab.OnEdgeFabClickListener
+import com.hfahmy.mefab.fabs.OnEdgeFabClickListener
 import com.hfahmy.mefab.sample.databinding.FragmentFirstBinding
 
 /**

@@ -1,8 +1,10 @@
-package com.hfahmy.mefab
+package com.hfahmy.mefab.fabs
 
 import android.content.Context
 import android.util.AttributeSet
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.hfahmy.mefab.MeFabRestricted
+import com.hfahmy.mefab.interfaces.Communicator
 
 @OptIn(MeFabRestricted::class)
 internal class EdgeFloatingActionButton @JvmOverloads constructor(

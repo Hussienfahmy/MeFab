@@ -1,4 +1,6 @@
-package com.hfahmy.mefab
+package com.hfahmy.mefab.models
+
+import com.hfahmy.mefab.MeFabRestricted
 
 /**
  * Point.

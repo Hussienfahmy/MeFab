@@ -1,4 +1,6 @@
-package com.hfahmy.mefab
+package com.hfahmy.mefab.enums
+
+import com.hfahmy.mefab.MeFabRestricted
 
 /**
  * Position.
