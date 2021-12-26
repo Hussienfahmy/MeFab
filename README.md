@@ -1,8 +1,7 @@
-[![](https://badgen.net/maven/v/maven-central/io.github.hussienfahmy/mefab)](https://TODO)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.hussienfahmy/mefab.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.hussienfahmy%22%20AND%20a:%22mefab%22)
 
 MeFab
 =====
-todo add the maven badge here
 
 Floating Action Button but MOVABLE and EXPANDABLE
 
@@ -19,7 +18,7 @@ use Gradle:
 
 ```gradle
 dependencies {
-  //todo
+  implementation 'io.github.hussienfahmy:mefab:1.0.1'
 }
 ```
 
@@ -27,7 +26,10 @@ Or Maven:
 
 ```xml
 <dependency>
-todo
+  <groupId>io.github.hussienfahmy</groupId>
+  <artifactId>mefab</artifactId>
+  <version>1.0.1</version>
+  <type>aar</type>
 </dependency>
 ```
 
