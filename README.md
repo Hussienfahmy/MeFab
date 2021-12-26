@@ -1,10 +1,13 @@
 MeFab
 =====
-todo add the maven bacge here
+todo add the maven badge here
 
-Floating Action Button but MOVEABLE and EXPANDALBE
+Floating Action Button but MOVABLE and EXPANDABLE
 
-Based on the power of [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) MeFab can change the fab positions while moving it around the screen giving you a butiful design and user friendly experience for user and developer 
+Based on the power
+of [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) MeFab can
+change the fab positions while moving it around the screen giving you a beautiful design and user
+friendly experience for user and developer
 
 Installation
 --------
@@ -29,10 +32,10 @@ Or Maven:
 Compatibility
 -------------
  **Minimum Android SDK**: API level of 21.
- 
+
  How to use
 -------------
-Create a menu Describe the icon and id for each edge fab (MeFab currentlly support maximmum 3 items)
+Create a menu Describe the icon and id for each edge fab (MeFab currently support maximum 3 items)
 
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
@@ -54,16 +57,21 @@ Create a menu Describe the icon and id for each edge fab (MeFab currentlly suppo
 ```
 
  In the view XML you want to place MeFab
+
 ```xml
     <com.hfahmy.mefab.MovableFloatingExpandedActionButton
         android:id="@+id/me_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:closeAfterEdgeFabClick="true" // default: false, the fabs on the edge return to center when one of them clicked
-        app:menu="@menu/fabs_menu" // the menu describing the edge fabs
+        app:closeAfterEdgeFabClick="true"
+        app:menu="@menu/fabs_menu"
         />
+<!--    app:closeAfterEdgeFabClick: default: false, the fabs on the edge return to center when one of them clicked-->
+<!--    app:menu: the menu describing the edge fabs-->
 ```
-Finally add click listener to recieve the id as a callback when the edge fab cliked
+
+Finally add click listener to receive the id as a callback when the edge fab clicked
+
 ```kotlin
         binding.meFab.setOnEdgeFabClickListener(OnEdgeFabClickListener { id ->
             Toast.makeText(
