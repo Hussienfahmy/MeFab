@@ -1,3 +1,5 @@
+![](https://badgen.net/maven/v/maven-central/io.github.hussienfahmy/mefab)
+
 MeFab
 =====
 todo add the maven badge here
@@ -25,15 +27,14 @@ Or Maven:
 
 ```xml
 <dependency>
-  <groupId>io.github.hussienfahmy</groupId>
-  <artifactId>todo</artifactId>
-  <version>todo</version>
+todo
 </dependency>
 ```
 
 Compatibility
 -------------
  **Minimum Android SDK**: API level of 21.
+ **Maximum menu items (Edge fab) is 3
 
  How to use
 -------------
@@ -90,7 +91,7 @@ Finally add click listener to receive the id as a callback when the edge fab cli
 
 Using By
 --------
-TODO
+[GPA Manager](https://play.google.com/store/apps/details?id=com.hussienFahmy.myGpaManager)
 
 Feel free to mak a pull request and your link here
 
