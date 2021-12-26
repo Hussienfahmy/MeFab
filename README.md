@@ -1,10 +1,17 @@
+[![](https://badgen.net/maven/v/maven-central/io.github.hussienfahmy/mefab)](https://TODO)
+
 MeFab
 =====
-todo add the maven bacge here
+todo add the maven badge here
 
-Floating Action Button but MOVEABLE and EXPANDALBE
+Floating Action Button but MOVABLE and EXPANDABLE
 
-Based on the power of [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) MeFab can change the fab positions while moving it around the screen giving you a butiful design and user friendly experience for user and developer 
+Based on the power
+of [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) MeFab can
+change the fab positions while moving it around the screen giving you a beautiful design and user
+friendly experience for user and developer as you can start using it in 3 steps
+
+![overview](images/overview.gif)
 
 Installation
 --------
@@ -20,19 +27,19 @@ Or Maven:
 
 ```xml
 <dependency>
-  <groupId>io.github.hussienfahmy</groupId>
-  <artifactId>todo</artifactId>
-  <version>todo</version>
+todo
 </dependency>
 ```
 
 Compatibility
 -------------
- **Minimum Android SDK**: API level of 21.
+ - Minimum Android SDK API level is 21.
  
- How to use
+ - Maximum menu items (Edge fab) is 3.
+
+ How to use (3 steps)
 -------------
-Create a menu Describe the icon and id for each edge fab (MeFab currentlly support maximmum 3 items)
+1. Create a menu Describe the icon and id for each edge fab (MeFab currently support maximum 3 items)
 
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
@@ -53,17 +60,22 @@ Create a menu Describe the icon and id for each edge fab (MeFab currentlly suppo
 </menu>
 ```
 
- In the view XML you want to place MeFab
+2. In the view XML you want to place MeFab
+
 ```xml
     <com.hfahmy.mefab.MovableFloatingExpandedActionButton
         android:id="@+id/me_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:closeAfterEdgeFabClick="true" // default: false, the fabs on the edge return to center when one of them clicked
-        app:menu="@menu/fabs_menu" // the menu describing the edge fabs
+        app:closeAfterEdgeFabClick="true"
+        app:menu="@menu/fabs_menu"
         />
+<!--    app:closeAfterEdgeFabClick: default: false, the fabs on the edge return to center when one of them clicked-->
+<!--    app:menu: the menu describing the edge fabs-->
 ```
-Finally add click listener to recieve the id as a callback when the edge fab cliked
+
+3. Finally add click listener to receive the id as a callback when the edge fab clicked
+
 ```kotlin
         binding.meFab.setOnEdgeFabClickListener(OnEdgeFabClickListener { id ->
             Toast.makeText(
@@ -80,9 +92,9 @@ Finally add click listener to recieve the id as a callback when the edge fab cli
 
 Using By
 --------
-TODO
+[GPA Manager](https://play.google.com/store/apps/details?id=com.hussienFahmy.myGpaManager)
 
-Feel free to mak a pull request and your link here
+Feel free to make a pull request and your app here
 
 Contribution
 --------

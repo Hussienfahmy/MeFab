@@ -10,6 +10,13 @@ import androidx.core.view.doOnPreDraw
 import androidx.core.view.iterator
 import androidx.core.view.size
 import androidx.core.view.updateLayoutParams
+import com.hfahmy.mefab.enums.Position
+import com.hfahmy.mefab.fabs.CenterFloatingActionButton
+import com.hfahmy.mefab.fabs.EdgeFloatingActionButton
+import com.hfahmy.mefab.fabs.OnEdgeFabClickListener
+import com.hfahmy.mefab.interfaces.Communicator
+import com.hfahmy.mefab.models.Point
+import com.hfahmy.mefab.utils.*
 import kotlin.properties.Delegates
 
 @OptIn(MeFabRestricted::class)
@@ -99,6 +106,15 @@ public class MovableFloatingExpandedActionButton @JvmOverloads constructor(
                     setImageDrawable(menuItem.icon)
                     id = menuItem.itemId
                     ids.add(menuItem.itemId)
+                    layoutParams = LayoutParams(
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT
+                    ).apply {
+                        startToStart = this@MovableFloatingExpandedActionButton.id
+                        endToEnd = this@MovableFloatingExpandedActionButton.id
+                        topToTop = this@MovableFloatingExpandedActionButton.id
+                        bottomToBottom = this@MovableFloatingExpandedActionButton.id
+                    }
                 }
                 addView(edgeFab)
             }
