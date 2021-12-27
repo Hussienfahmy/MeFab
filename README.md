@@ -18,7 +18,7 @@ use Gradle:
 
 ```gradle
 dependencies {
-    implementation 'io.github.hussienfahmy:mefab:1.0.3'
+    implementation 'io.github.hussienfahmy:mefab:1.0.4'
 }
 ```
 
@@ -28,7 +28,7 @@ Or Maven:
 <dependency>
     <groupId>io.hussienfahmy.hussienfahmy</groupId>
     <artifactId>mefab</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
     <type>aar</type>
 </dependency>
 ```
