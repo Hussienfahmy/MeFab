@@ -18,7 +18,7 @@ use Gradle:
 
 ```gradle
 dependencies {
-    implementation 'io.github.hussienfahmy:mefab:1.0.2'
+    implementation 'io.github.hussienfahmy:mefab:1.0.3'
 }
 ```
 
@@ -28,7 +28,7 @@ Or Maven:
 <dependency>
     <groupId>io.hussienfahmy.hussienfahmy</groupId>
     <artifactId>mefab</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <type>aar</type>
 </dependency>
 ```
@@ -74,9 +74,9 @@ Compatibility
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/fabs_menu" />
+        app:edges="@menu/fabs_menu" />
 <!--    app:closeAfterEdgeFabClick: default: false, the fabs on the edge return to center when one of them clicked-->
-<!--    app:menu: the menu describing the edge fabs-->
+<!--    app:edges: the menu describing the edge fabs-->
 ```
 
 3. Finally add click listener to receive the id as a callback when the edge fab clicked

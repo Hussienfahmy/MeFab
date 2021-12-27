@@ -68,13 +68,14 @@ public class MovableExpandedFloatingActionButton @JvmOverloads constructor(
         }
 
         // get user values from xml attributes
-        context.withStyledAttributes(attrs, R.styleable.MovableFloatingExpandedActionButton) {
+        context.withStyledAttributes(attrs, R.styleable.MovableExpandedFloatingActionButton) {
             closeAfterEdgeFabClick =
                 this.getBoolean(
-                    R.styleable.MovableFloatingExpandedActionButton_closeAfterEdgeFabClick,
+                    R.styleable.MovableExpandedFloatingActionButton_closeAfterEdgeFabClick,
                     false
                 )
-            val menuId = this.getResourceId(R.styleable.MovableFloatingExpandedActionButton_menu, 0)
+            val menuId =
+                this.getResourceId(R.styleable.MovableExpandedFloatingActionButton_edges, 0)
             generateEdgeFabs(menuId, attrs, defStyleAttr)
         }
 

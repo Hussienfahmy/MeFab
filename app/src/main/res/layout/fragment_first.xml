@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/fabs_menu" />
+        app:edges="@menu/fabs_menu" />
 
     <View
         android:id="@+id/view5"

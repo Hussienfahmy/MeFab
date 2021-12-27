@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="MovableFloatingExpandedActionButton">
-        <attr name="menu" format="reference" />
+    <declare-styleable name="MovableExpandedFloatingActionButton">
+        <attr name="edges" format="reference" />
         <attr name="closeAfterEdgeFabClick" format="boolean" />
     </declare-styleable>
 </resources>
