@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context="io.hussienfahmy.mefab.sample.FirstFragment">
 
-    <com.hfahmy.mefab.MovableFloatingExpandedActionButton
+    <io.hussienfahmy.mefab.MovableExpandedFloatingActionButton
         android:id="@+id/me_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

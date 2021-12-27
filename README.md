@@ -18,7 +18,7 @@ use Gradle:
 
 ```gradle
 dependencies {
-  implementation 'io.github.hussienfahmy:mefab:1.0.1'
+    implementation 'io.github.hussienfahmy:mefab:1.0.2'
 }
 ```
 
@@ -26,17 +26,17 @@ Or Maven:
 
 ```xml
 <dependency>
-  <groupId>io.github.hussienfahmy</groupId>
-  <artifactId>mefab</artifactId>
-  <version>1.0.1</version>
-  <type>aar</type>
+    <groupId>io.hussienfahmy.hussienfahmy</groupId>
+    <artifactId>mefab</artifactId>
+    <version>1.0.2</version>
+    <type>aar</type>
 </dependency>
 ```
 
 Compatibility
 -------------
  - Minimum Android SDK API level is 21.
- 
+
  - Maximum menu items (Edge fab) is 3.
 
  How to use (3 steps)
@@ -65,13 +65,16 @@ Compatibility
 2. In the view XML you want to place MeFab
 
 ```xml
-    <com.hfahmy.mefab.MovableFloatingExpandedActionButton
+    <io.hussienfahmy.mefab.MovableExpandedFloatingActionButton
         android:id="@+id/me_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:closeAfterEdgeFabClick="true"
-        app:menu="@menu/fabs_menu"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/fabs_menu" />
 <!--    app:closeAfterEdgeFabClick: default: false, the fabs on the edge return to center when one of them clicked-->
 <!--    app:menu: the menu describing the edge fabs-->
 ```
