@@ -128,11 +128,15 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
 
     fun inverseState() {
         state = state.inverse()
+        notifyIconAnimator()
+        communicator.onCenterFabPositionChange(getCenterFabPositionOnScreen())
+    }
+
+    private fun notifyIconAnimator() {
         when (state) {
             State.EXPANDED -> animateIconToCloseIcon()
             State.CLOSED -> animateIconToMenuIcon()
         }
-        communicator.onCenterFabPositionChange(getCenterFabPositionOnScreen())
     }
 
     private fun animateIconToMenuIcon() {
@@ -166,5 +170,11 @@ internal class CenterFloatingActionButton @JvmOverloads constructor(
             y in separators.y2ToBorderRange && x in separators.x2ToBorderRange -> Position.BOTTOM_RIGHT
             else -> throw IllegalStateException("Can't determine the position for provided X = $x, Y = $y")
         }
+    }
+
+    // as sometimes the icon freezes on Sate Expanded when changing between fragments
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        notifyIconAnimator()
     }
 }
