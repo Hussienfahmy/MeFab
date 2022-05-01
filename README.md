@@ -5,6 +5,8 @@ MeFab
 
 Floating Action Button but MOVABLE and EXPANDABLE
 
+<img src="https://github.com/Hussienfahmy/MeFab_Compose/blob/master/images/jetpack-compose-icon_RGB.png" width="70" height="70"> Available Also as [Compose version](https://github.com/Hussienfahmy/MeFab_Compose)
+
 Based on the power
 of [MotionLayout](https://developer.android.com/training/constraint-layout/motionlayout) MeFab can
 change the fab positions while moving it around the screen giving you a beautiful design and user
