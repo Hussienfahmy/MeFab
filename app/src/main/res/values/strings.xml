@@ -2,4 +2,5 @@
     <string name="app_name">MeFab Sample</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
 </resources>
